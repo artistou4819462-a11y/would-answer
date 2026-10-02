@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#130b18">
+
+<title>For Linda 🌷</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #0d0812;
+    color: white;
+}
+
+/* =========================
+   GENERAL
+========================= */
+
+.screen {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.8s ease,
+        visibility 0.8s ease;
+
+    overflow: hidden;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =========================
+   INTRO SCREEN
+========================= */
+
+#intro {
+    background:
+        radial-gradient(circle at 50% 45%,
+        rgba(255, 113, 174, 0.13),
+        transparent 25%),
+        #0d0812;
+}
+
+.intro-content {
+    text-align: center;
+    z-index: 5;
+}
+
+.system {
+    color: #ff8fc3;
+    font-family: monospace;
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    opacity: 0.8;
+}
+
+.loading {
+    width: 220px;
+    height: 3px;
+    background: rgba(255,255,255,0.08);
+    margin: 25px auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.loading-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg,#ff72ae,#ffd1e5);
+    animation: loading 3s forwards;
+}
+
+@keyframes loading {
+    to { width: 100%; }
+}
+
+.intro-title {
+    font-family: Georgia, serif;
+    font-size: clamp(38px, 10vw, 75px);
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+.intro-sub {
+    color: rgba(255,255,255,0.55);
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+/* =========================
+   MAIN BACKGROUND
+========================= */
+
+#questions {
+    background:
+        radial-gradient(circle at 20% 20%, #53253f, transparent 35%),
+        radial-gradient(circle at 80% 80%, #35204b, transparent 35%),
+        linear-gradient(135deg,#160d1d,#241020);
+}
+
+.glow {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    background: #ff6fae;
+    filter: blur(150px);
+
+    opacity: 0.08;
+}
+
+.glow.one {
+    top: -150px;
+    left: -100px;
+}
+
+.glow.two {
+    bottom: -180px;
+    right: -100px;
+}
+
+/* =========================
+   FLOWERS
+========================= */
+
+.flower {
+    position: absolute;
+    opacity: 0.18;
+    user-select: none;
+    animation: flowerFloat 7s ease-in-out infinite;
+}
+
+.flower:nth-child(1) {
+    font-size: 70px;
+    top: 7%;
+    left: 7%;
+}
+
+.flower:nth-child(2) {
+    font-size: 50px;
+    top: 15%;
+    right: 10%;
+    animation-delay: 1s;
+}
+
+.flower:nth-child(3) {
+    font-size: 65px;
+    bottom: 8%;
+    left: 10%;
+    animation-delay: 2s;
+}
+
+.flower:nth-child(4) {
+    font-size: 55px;
+    bottom: 15%;
+    right: 8%;
+    animation-delay: 3s;
+}
+
+@keyframes flowerFloat {
+    0%,100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(7deg);
+    }
+}
+
+/* =========================
+   QUESTION CARD
+========================= */
+
+.card {
+    position: relative;
+    z-index: 10;
+
+    width: min(92vw, 580px);
+
+    padding: 45px 30px;
+
+    text-align: center;
+
+    background: rgba(255,255,255,0.07);
+
+    border:
+        1px solid rgba(255,255,255,0.12);
+
+    border-radius: 30px;
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,0.4);
+
+    animation: cardAppear 0.8s ease;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.question-number {
+    color: #ff8fc3;
+
+    font-family: monospace;
+
+    letter-spacing: 4px;
+
+    font-size: 12px;
+
+    margin-bottom: 22px;
+}
+
+.question {
+    font-family: Georgia, serif;
+
+    font-size: clamp(27px, 6vw, 42px);
+
+    line-height: 1.2;
+
+    font-weight: 400;
+
+    margin-bottom: 15px;
+}
+
+.question-small {
+    color: rgba(255,255,255,0.55);
+
+    font-size: 14px;
+
+    margin-bottom: 32px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 15px;
+
+    min-height: 60px;
+
+    position: relative;
+}
+
+button {
+    font-family: inherit;
+
+    border: none;
+
+    border-radius: 100px;
+
+    padding: 14px 30px;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+.yes {
+    background: linear-gradient(
+        135deg,
+        #ff77b5,
+        #ff4f99
+    );
+
+    color: white;
+
+    box-shadow:
+        0 10px 30px rgba(255,70,150,0.25);
+}
+
+.yes:hover {
+    transform: scale(1.08);
+
+    box-shadow:
+        0 15px 40px rgba(255,70,150,0.4);
+}
+
+.no {
+    background: rgba(255,255,255,0.08);
+
+    color: rgba(255,255,255,0.75);
+
+    border:
+        1px solid rgba(255,255,255,0.13);
+}
+
+.no:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+/* =========================
+   RESPONSE
+========================= */
+
+.response {
+    min-height: 25px;
+
+    margin-top: 22px;
+
+    color: #ffb5d5;
+
+    font-size: 14px;
+
+    transition: opacity 0.3s ease;
+}
+
+/* =========================
+   FINAL SCREEN
+========================= */
+
+#final {
+    background:
+        radial-gradient(circle at center,
+        rgba(255,122,179,0.18),
+        transparent 35%),
+        linear-gradient(135deg,#170b18,#281026);
+
+    text-align: center;
+}
+
+.final-content {
+    position: relative;
+    z-index: 10;
+
+    max-width: 700px;
+}
+
+.final-rose {
+    font-size: 80px;
+
+    animation:
+        roseFloat 3s ease-in-out infinite;
+
+    margin-bottom: 15px;
+}
+
+@keyframes roseFloat {
+    0%,100% {
+        transform: translateY(0) rotate(-3deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(3deg);
+    }
+}
+
+.final-small {
+    color: #ff9ec8;
+
+    font-family: monospace;
+
+    letter-spacing: 4px;
+
+    font-size: 12px;
+
+    margin-bottom: 20px;
+}
+
+.final-title {
+    font-family: Georgia, serif;
+
+    font-size: clamp(45px, 11vw, 90px);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    margin-bottom: 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #ffacd0,
+            #fff
+        );
+
+    background-size: 200%;
+
+    -webkit-background-clip: text;
+    color: transparent;
+
+    animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+    to {
+        background-position: 200%;
+    }
+}
+
+.final-message {
+    color: rgba(255,255,255,0.72);
+
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    max-width: 560px;
+
+    margin: auto;
+}
+
+.signature {
+    margin-top: 30px;
+
+    color: #ff9ec8;
+
+    font-family: Georgia, serif;
+
+    font-size: 20px;
+
+    font-style: italic;
+}
+
+/* =========================
+   PARTICLES
+========================= */
+
+.particle {
+    position: fixed;
+
+    pointer-events: none;
+
+    z-index: 50;
+
+    animation:
+        particleUp 5s linear forwards;
+}
+
+@keyframes particleUp {
+    from {
+        transform:
+            translateY(0)
+            scale(0.5)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    to {
+        transform:
+            translateY(-110vh)
+            scale(1.4)
+            rotate(180deg);
+
+        opacity: 0;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:500px) {
+
+    .card {
+        padding: 38px 20px;
+    }
+
+    .buttons {
+        gap: 10px;
+    }
+
+    button {
+        padding: 13px 23px;
+    }
+
+    .final-message {
+        font-size: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section class="screen active" id="intro">
+
+    <div class="intro-content">
+
+        <div class="system">
+            PRIVATE BIRTHDAY PROTOCOL
+        </div>
+
+        <h1 class="intro-title">
+            Hello, Linda.
+        </h1>
+
+        <div class="loading">
+            <div class="loading-bar"></div>
+        </div>
+
+        <div class="intro-sub">
+            preparing something slightly unexpected...
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     QUESTIONS
+===================================================== -->
+
+<section class="screen" id="questions">
+
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+    <div class="flower">🌹</div>
+    <div class="flower">🌸</div>
+    <div class="flower">🌷</div>
+    <div class="flower">🌺</div>
+
+
+    <div class="card">
+
+        <div
+            class="question-number"
+            id="questionNumber"
+        >
+            QUESTION 01
+        </div>
+
+        <h2
+            class="question"
+            id="question"
+        >
+            Do you believe you deserve something special today?
+        </h2>
+
+        <p
+            class="question-small"
+            id="questionSmall"
+        >
+            Be honest. This is important. 👀
+        </p>
+
+
+        <div class="buttons">
+
+            <button
+                class="yes"
+                id="yes"
+            >
+                YES ✨
+            </button>
+
+            <button
+                class="no"
+                id="no"
+            >
+                NO 🙄
+            </button>
+
+        </div>
+
+
+        <div
+            class="response"
+            id="response"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<section class="screen" id="final">
+
+    <div class="final-content">
+
+        <div class="final-rose">
+            🌷
+        </div>
+
+        <div class="final-small">
+            SYSTEM MESSAGE
+        </div>
+
+        <h1 class="final-title">
+            Happy Birthday,<br>
+            Linda.
+        </h1>
+
+        <p class="final-message">
+
+            Another chapter unlocked. ✨
+            <br><br>
+
+            I hope this year brings you
+            beautiful memories, unexpected
+            happiness, and plenty of reasons
+            to smile.
+
+            <br><br>
+
+            You deserve a year that feels
+            a little more magical than the last.
+
+        </p>
+
+        <div class="signature">
+            — someone who wanted to make
+            your birthday a little different 🌹
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =====================================================
+   INTRO → QUESTIONS
+===================================================== */
+
+setTimeout(() => {
+
+    document
+        .getElementById("intro")
+        .classList.remove("active");
+
+    document
+        .getElementById("questions")
+        .classList.add("active");
+
+}, 4300);
+
+
+/* =====================================================
+   QUESTION DATA
+===================================================== */
+
+const questions = [
+
+    {
+        title:
+        "Do you believe you deserve something special today?",
+
+        subtitle:
+        "Be honest. This is important. 👀",
+
+        yes:
+        "YES ✨",
+
+        no:
+        "NO 🙄",
+
+        yesResponse:
+        "Correct answer. I had a feeling. 🌷",
+
+        noResponse:
+        "That's suspicious... let's try that again. 😌"
+    },
+
+
+    {
+        title:
+        "Would you like to make this birthday slightly more interesting?",
+
+        subtitle:
+        "You only have two options.",
+
+        yes:
+        "Obviously 💗",
+
+        no:
+        "Not really...",
+
+        yesResponse:
+        "Good. Now we're getting somewhere. 👀",
+
+        noResponse:
+        "Too late. You've already started. 😭"
+    },
+
+
+    {
+        title:
+        "Do you think today should contain at least one unexpected moment?",
+
+        subtitle:
+        "Think carefully...",
+
+        yes:
+        "YES 🌸",
+
+        no:
+        "NO 😐",
+
+        yesResponse:
+        "Excellent. I approve this decision. ✨",
+
+        noResponse:
+        "I respectfully disagree. 😂"
+    },
+
+
+    {
+        title:
+        "Are you ready for the final question?",
+
+        subtitle:
+        "This one is different.",
+
+        yes:
+        "I'm ready 💕",
+
+        no:
+        "Nope.",
+
+        yesResponse:
+        "Then let's finish this properly. 🌹",
+
+        noResponse:
+        "Unfortunately, the protocol doesn't accept that answer. 😌"
+    }
+
+];
+
+
+let currentQuestion = 0;
+let noAttempts = 0;
+
+
+const questionNumber =
+    document.getElementById("questionNumber");
+
+const question =
+    document.getElementById("question");
+
+const questionSmall =
+    document.getElementById("questionSmall");
+
+const yesButton =
+    document.getElementById("yes");
+
+const noButton =
+    document.getElementById("no");
+
+const response =
+    document.getElementById("response");
+
+
+/* =====================================================
+   LOAD QUESTION
+===================================================== */
+
+function loadQuestion() {
+
+    const q = questions[currentQuestion];
+
+    questionNumber.textContent =
+        `QUESTION ${String(currentQuestion + 1).padStart(2,"0")}`;
+
+    question.textContent =
+        q.title;
+
+    questionSmall.textContent =
+        q.subtitle;
+
+    yesButton.textContent =
+        q.yes;
+
+    noButton.textContent =
+        q.no;
+
+    response.textContent = "";
+
+    noButton.style.position = "relative";
+
+    noButton.style.left = "auto";
+    noButton.style.top = "auto";
+
+    noButton.style.transform = "scale(1)";
+
+    yesButton.style.transform = "scale(1)";
+
+    noAttempts = 0;
+}
+
+
+/* =====================================================
+   YES
+===================================================== */
+
+yesButton.addEventListener("click", () => {
+
+    const q = questions[currentQuestion];
+
+    response.textContent =
+        q.yesResponse;
+
+    createParticles(12);
+
+    setTimeout(() => {
+
+        currentQuestion++;
+
+        if (currentQuestion >= questions.length) {
+
+            showFinal();
+
+        } else {
+
+            loadQuestion();
+
+        }
+
+    }, 1300);
+
+});
+
+
+/* =====================================================
+   NO
+===================================================== */
+
+function escapeNo() {
+
+    noAttempts++;
+
+    const q = questions[currentQuestion];
+
+    response.textContent =
+        q.noResponse;
+
+
+    /* First attempts:
+       move the button subtly.
+    */
+
+    if (noAttempts < 3) {
+
+        noButton.style.transform =
+            `translateX(${Math.random() * 70 - 35}px)`;
+
+    }
+
+
+    /* After 3 attempts:
+       make it actually escape.
+    */
+
+    else {
+
+        noButton.style.position =
+            "fixed";
+
+        const padding = 25;
+
+        const maxX =
+            window.innerWidth -
+            noButton.offsetWidth -
+            padding;
+
+        const maxY =
+            window.innerHeight -
+            noButton.offsetHeight -
+            padding;
+
+        const x =
+            Math.random() *
+            (maxX - padding) +
+            padding;
+
+        const y =
+            Math.random() *
+            (maxY - padding) +
+            padding;
+
+        noButton.style.left =
+            `${x}px`;
+
+        noButton.style.top =
+            `${y}px`;
+    }
+
+
+    /* YES becomes increasingly attractive */
+
+    const scale =
+        Math.min(
+            1 + noAttempts * 0.08,
+            1.35
+        );
+
+    yesButton.style.transform =
+        `scale(${scale})`;
+
+
+    /* After enough attempts,
+       change the NO text.
+    */
+
+    if (noAttempts === 4) {
+
+        noButton.textContent =
+            "Still NO? 😭";
+
+    }
+
+    if (noAttempts === 6) {
+
+        noButton.textContent =
+            "Okay okay... 😶";
+
+    }
+
+    if (noAttempts >= 8) {
+
+        noButton.textContent =
+            "Fine. 😭";
+
+        noButton.style.opacity =
+            "0.45";
+    }
+}
+
+
+/* Desktop */
+
+noButton.addEventListener(
+    "mouseenter",
+    escapeNo
+);
+
+
+/* Mobile */
+
+noButton.addEventListener(
+    "touchstart",
+    function(event) {
+
+        event.preventDefault();
+
+        escapeNo();
+
+    }
+);
+
+
+/* If she somehow clicks it */
+
+noButton.addEventListener(
+    "click",
+    escapeNo
+);
+
+
+/* =====================================================
+   FINAL SCREEN
+===================================================== */
+
+function showFinal() {
+
+    document
+        .getElementById("questions")
+        .classList.remove("active");
+
+    document
+        .getElementById("final")
+        .classList.add("active");
+
+    createParticles(80);
+
+}
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+function createParticles(amount) {
+
+    const symbols = [
+        "❤️",
+        "💗",
+        "💕",
+        "✨",
+        "🌸",
+        "🌷",
+        "🌹"
+    ];
+
+
+    for (let i = 0; i < amount; i++) {
+
+        setTimeout(() => {
+
+            const particle =
+                document.createElement("div");
+
+            particle.className =
+                "particle";
+
+            particle.textContent =
+                symbols[
+                    Math.floor(
+                        Math.random() *
+                        symbols.length
+                    )
+                ];
+
+            particle.style.left =
+                Math.random() * 100 + "vw";
+
+            particle.style.bottom =
+                "-30px";
+
+            particle.style.fontSize =
+                (14 + Math.random() * 28) + "px";
+
+            particle.style.animationDuration =
+                (3 + Math.random() * 4) + "s";
+
+            document.body.appendChild(
+                particle
+            );
+
+
+            setTimeout(() => {
+
+                particle.remove();
+
+            }, 7000);
+
+        }, i * 40);
+    }
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
